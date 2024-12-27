@@ -2,12 +2,19 @@
   "name": "gig-flow",
   "private": true,
   "scripts": {
-    "build": "turbo build",
-    "dev": "turbo dev",
-    "lint": "turbo lint",
-    "format": "prettier --write \"**/*.{ts,tsx,md}\""
+    "build": "dotenv -e .env -- turbo build",
+    "dev": "dotenv -e .env -- turbo dev",
+    "lint": "dotenv -e .env -- turbo lint",
+    "format": "prettier --write \"**/*.{ts,tsx,md}\"",
+    "deploy:web": "dotenv -e .env -- turbo run build --filter=web... && vercel deploy apps/web",
+    "deploy:mobile": "dotenv -e .env -- turbo run build --filter=mobile... && cd apps/mobile && eas build",
+    "deploy": "pnpm run deploy:web && pnpm run deploy:mobile",
+    "db:studio": "cd packages/backend && pnpm run db:studio",
+    "db:push": "cd packages/backend && pnpm run db:push",
+    "db:generate": "cd packages/backend && pnpm run db:generate"
   },
   "devDependencies": {
+    "dotenv-cli": "^8.0.0",
     "prettier": "^3.2.5",
     "turbo": "^2.3.3",
     "typescript": "5.5.4"

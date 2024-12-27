@@ -1,0 +1,66 @@
+// packages/backend/prisma/schema.prisma
+datasource db {
+  provider = "postgresql"
+  url      = env("DATABASE_URL")
+}
+
+generator client {
+  provider = "prisma-client-js"
+}
+
+model Song {
+  id             String        @id @default(cuid())
+  title          String
+  sourceGame     String
+  sourcePlatform String
+  sourceYear     Int
+  baseLength     Int
+  minLength      Int
+  maxLength      Int
+  style          String
+  feel           String[]
+  tempo          Int
+  intensity      Int
+  key            String
+  instruments    String[]
+  features       String[]
+  soloSections   SoloSection[]
+  setListSongs   SetListSong[]
+  createdAt      DateTime      @default(now())
+  updatedAt      DateTime      @updatedAt
+}
+
+model SoloSection {
+  id          String   @id @default(cuid())
+  songId      String
+  song        Song     @relation(fields: [songId], references: [id])
+  location    String
+  length      Int
+  bars        Int
+  repeatable  Boolean
+  instruments String[]
+  writtenFor  String?
+  createdAt   DateTime @default(now())
+  updatedAt   DateTime @updatedAt
+}
+
+model SetList {
+  id        String        @id @default(cuid())
+  name      String
+  date      DateTime
+  songs     SetListSong[]
+  createdAt DateTime      @default(now())
+  updatedAt DateTime      @updatedAt
+}
+
+model SetListSong {
+  id          String   @id @default(cuid())
+  setListId   String
+  setList     SetList  @relation(fields: [setListId], references: [id])
+  songId      String
+  song        Song     @relation(fields: [songId], references: [id])
+  position    Int
+  soloConfigs Json // Store solo configurations as JSON
+  createdAt   DateTime @default(now())
+  updatedAt   DateTime @updatedAt
+}
