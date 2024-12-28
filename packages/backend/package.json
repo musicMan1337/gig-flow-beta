@@ -10,13 +10,10 @@
         "db:generate": "prisma generate"
     },
     "dependencies": {
-        "@prisma/client": "^5.22.0",
-        "zod": "^3.0.0"
+        "@prisma/client": "^5.22.0"
     },
     "devDependencies": {
         "@repo/typescript-config": "workspace:*",
-        "@types/node": "^20",
-        "prisma": "^5.0.0",
-        "typescript": "5.5.4"
+        "prisma": "^5.0.0"
     }
 }

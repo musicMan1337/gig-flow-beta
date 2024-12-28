@@ -12,7 +12,7 @@ type CustomExpoConfigExtra = {
 }
 
 // Make the extra config values available to TypeScript
-declare module "expo-constants" {
+declare module "expo/config" {
   interface Constants {
     expoConfig: ExpoConfig & {
       extra: CustomExpoConfigExtra
