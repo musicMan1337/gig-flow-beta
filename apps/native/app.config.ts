@@ -22,8 +22,8 @@ declare module "expo/config" {
 
 export default ({ config }: ConfigContext): ExpoConfig => ({
   ...config,
-  name: "mobile",
-  slug: "mobile",
+  name: "native",
+  slug: "native",
   version: "1.0.0",
   orientation: "portrait",
   icon: "./assets/images/icon.png",

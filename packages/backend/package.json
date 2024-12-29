@@ -10,6 +10,7 @@
         "db:generate": "prisma generate"
     },
     "dependencies": {
+        "zod": "^3.0.0",
         "@prisma/client": "^5.22.0"
     },
     "devDependencies": {

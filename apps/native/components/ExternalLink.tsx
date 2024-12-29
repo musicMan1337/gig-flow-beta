@@ -5,11 +5,11 @@ import { Platform } from 'react-native';
 
 type Props = Omit<ComponentProps<typeof Link>, 'href'> & { href: string };
 
-export function ExternalLink({ href, ...rest }: Props) {
+export function ExternalLink({ href, children, ...props }: Props) {
   return (
     <Link
       target="_blank"
-      {...rest}
+      {...props}
       href={href}
       onPress={async (event) => {
         if (Platform.OS !== 'web') {
@@ -19,6 +19,6 @@ export function ExternalLink({ href, ...rest }: Props) {
           await openBrowserAsync(href);
         }
       }}
-    />
+    >{children}</Link>
   );
 }

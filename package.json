@@ -2,30 +2,23 @@
   "name": "gig-flow",
   "private": true,
   "scripts": {
-    "build": "dotenv -e .env -- turbo build",
-    "dev": "dotenv -e .env -- turbo dev",
+    "build": "dotenv -e .env -- turbo run build",
+    "dev": "dotenv -e .env -- turbo run dev",
     "lint": "dotenv -e .env -- turbo lint",
-    "format": "prettier --write \"**/*.{ts,tsx,md}\"",
+    "format": "prettier --write \"**/*.{ts,tsx,js,jsx,json,md}\" --ignore-path .gitignore",
     "deploy:web": "dotenv -e .env -- turbo run build --filter=web... && vercel deploy apps/web",
-    "deploy:mobile": "dotenv -e .env -- turbo run build --filter=mobile... && cd apps/mobile && eas build",
-    "deploy": "pnpm run deploy:web && pnpm run deploy:mobile",
+    "deploy:native": "dotenv -e .env -- turbo run build --filter=native... && cd apps/native && eas build",
+    "deploy": "pnpm run deploy:web && pnpm run deploy:native",
     "db:studio": "cd packages/backend && pnpm run db:studio",
     "db:push": "cd packages/backend && pnpm run db:push",
     "db:generate": "cd packages/backend && pnpm run db:generate"
   },
   "devDependencies": {
     "dotenv-cli": "^8.0.0",
-    "prettier": "^3.2.5",
+    "prettier": "latest",
     "turbo": "^2.3.3",
-    "typescript": "^5.5.4",
-    "@types/node": "^22.10.2",
-    "@types/react": "18.3.0",
-    "@types/react-dom": "18.3.1"
-  },
-  "dependencies": {
-    "zod": "^3.0.0",
-    "react": "^19.0.0",
-    "react-dom": "^19.0.0"
+    "typescript": "latest",
+    "eslint": "latest"
   },
   "packageManager": "pnpm@9.15.1",
   "engines": {

@@ -1,6 +1,11 @@
 {
-  "extends": "@repo/typescript-config/react-native.json",
+  "extends": [
+    "@repo/typescript-config/react-native.json",
+    "expo/tsconfig.base"
+  ],
   "compilerOptions": {
+    "strict": true,
+    "moduleResolution": "ESNext",
     "paths": {
       "@/*": [
         "./*"
@@ -12,7 +17,9 @@
     "**/*.tsx",
     "next-env.d.ts",
     "next.config.js",
-    ".next/types/**/*.ts"
+    ".next/types/**/*.ts",
+    ".expo/types/**/*.ts",
+    "expo-env.d.ts"
   ],
   "exclude": [
     "node_modules",
